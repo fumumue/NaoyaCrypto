@@ -414,14 +414,6 @@ int main(void) {
     //product_code(G_golay,12,23,G_hamming,4,7,&C);
     uint8_t piv[161];
     //gauss_elim(C,48,161,piv);
-    for(int i=0;i<12*4;i++)
-    {
-        //for(int j=0;j<23*7;j++)
-        printf("%d,",C[i][i]);
-        printf("\n");
-    }
-    printf("\n\n");
-   //exit(1);
     
     int Hr;
     //exit(1);
@@ -434,18 +426,19 @@ int main(void) {
     //exit(1);
 
     
-    for(int i=0;i<8;i++)
-    C[0][i*7+i]^=1;
+    //for(int i=0;i<8;i++)
+    //C[0][i*7+i]^=1;
     for(int i=0;i<7;i++)
-    C[0][i*23+i]^=1;
+    C[0][i]^=1;
     for(int j=0;j<23;j++){
         for(int i=0;i<7;i++){
-        matrix[j][i]=C[0][j*7+i];
+        matrix[j][i]^=C[0][j*7+i];
         printf("%d,",matrix[j][i]);
         }
         printf("\n");
     }
-    int iters = decode_product_iterative(matrix, 10);
+    //exit(1);
+    int iters = decode_product_iterative(matrix, 20);
     printf("done iterations: %d\n", iters);
 
     // show decoded matrix
